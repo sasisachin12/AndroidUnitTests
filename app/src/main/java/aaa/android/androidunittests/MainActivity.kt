@@ -1,6 +1,10 @@
 package aaa.android.androidunittests
 
 import aaa.android.androidunittests.ui.theme.AndroidUnitTestsTheme
+import aaa.android.androidunittests.utils.Utils.addTheValues
+import aaa.android.androidunittests.utils.Utils.divideTheValues
+import aaa.android.androidunittests.utils.Utils.minusTheValues
+import aaa.android.androidunittests.utils.Utils.multiplyTheValues
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -50,6 +53,7 @@ fun CalculatorFunctions() {
     val fieldResultValue = remember { mutableStateOf("") }
     Column {
         TextField(
+            enabled = false,
             textStyle = TextStyle(color = Color.Blue, fontWeight = FontWeight.Bold),
             value = " Simple Calculator",
             onValueChange = {},
@@ -103,7 +107,7 @@ fun CalculatorFunctions() {
                 .padding(10.dp)
         ) {
             ElevatedButton(onClick = {
-                val result = addTheValues(fieldOneValue, fieldTwoValue)
+                val result = addTheValues(fieldOneValue.value, fieldTwoValue.value)
                 fieldResultValue.value = result
             }) {
                 Text(
@@ -114,7 +118,7 @@ fun CalculatorFunctions() {
                 )
             }
             ElevatedButton(onClick = {
-                val result = minusTheValues(fieldOneValue, fieldTwoValue)
+                val result = minusTheValues(fieldOneValue.value, fieldTwoValue.value)
                 fieldResultValue.value = result
             }) {
                 Text(
@@ -125,7 +129,7 @@ fun CalculatorFunctions() {
                 )
             }
             ElevatedButton(onClick = {
-                val result = multiplyTheValues(fieldOneValue, fieldTwoValue)
+                val result = multiplyTheValues(fieldOneValue.value, fieldTwoValue.value)
                 fieldResultValue.value = result
             }) {
                 Text(
@@ -136,7 +140,7 @@ fun CalculatorFunctions() {
                 )
             }
             ElevatedButton(onClick = {
-                val result = divideTheValues(fieldOneValue, fieldTwoValue)
+                val result = divideTheValues(fieldOneValue.value, fieldTwoValue.value)
                 fieldResultValue.value = result
             }) {
                 Text(
@@ -164,19 +168,4 @@ fun CalculatorFunctions() {
 }
 
 
-fun addTheValues(inputOne: MutableState<String>, inputTwo: MutableState<String>): String {
-    return (inputOne.value.toFloat() + inputTwo.value.toFloat()).toString()
-}
-
-fun minusTheValues(inputOne: MutableState<String>, inputTwo: MutableState<String>): String {
-    return (inputOne.value.toFloat() - inputTwo.value.toFloat()).toString()
-}
-
-fun multiplyTheValues(inputOne: MutableState<String>, inputTwo: MutableState<String>): String {
-    return (inputOne.value.toFloat() * inputTwo.value.toFloat()).toString()
-}
-
-fun divideTheValues(inputOne: MutableState<String>, inputTwo: MutableState<String>): String {
-    return (inputOne.value.toFloat() / inputTwo.value.toFloat()).toString()
-}
 

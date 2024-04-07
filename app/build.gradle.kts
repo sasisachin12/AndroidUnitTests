@@ -65,6 +65,7 @@ dependencies {
     //implementation(libs.androidx.lifecycle:lifecycle-runtime-compose:2.6.2)
 
     testImplementation(libs.junit)
+    testImplementation("org.junit.jupiter:junit-jupiter:5.8.2")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
